@@ -1,17 +1,18 @@
 const initialState = {
+  isOpen: false,
+  isOpen2: false,
   listado: [
-    
     // Otros elementos de la lista...
   ],
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case "GET_LIST":
-      return {
-        ...state,
-        listado: action.payload,
-      };
+    case "CREATE_USER":
+      return { ...state };
+
+    case "LOGIN_USER":
+      return { ...state };
 
     case "ADD_LIST":
       console.log("estoy en el reducer");
@@ -27,6 +28,29 @@ function rootReducer(state = initialState, action) {
         listado: action.payload,
       };
 
+    case "OPEN_MODAL2":
+      return {
+        ...state,
+        isOpen2: true,
+      };
+
+    case "OPEN_MODAL":
+      return {
+        ...state,
+        isOpen: true,
+      };
+
+    case "CLOSE_MODAL2":
+      return {
+        ...state,
+        isOpen2: false,
+      };
+
+    case "CLOSE_MODAL":
+      return {
+        ...state,
+        isOpen: false,
+      };
     default:
       return {
         ...state,

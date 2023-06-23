@@ -1,5 +1,5 @@
 import express from "express";
-import routesList from "../Routes/routesList.js";
+import routesList from "./Routes/routesList.js";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import bodyParser from "body-parser";
@@ -28,6 +28,9 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
+
+//RUTAS
 app.use(routesList);
 
 //DATABASE
+import "./db.mjs";

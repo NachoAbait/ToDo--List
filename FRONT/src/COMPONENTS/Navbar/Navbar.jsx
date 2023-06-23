@@ -1,27 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import css from "./navbar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faListCheck } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
 import ModalLogin from "../ModalLogin/ModalLogin.jsx";
-import ModalSignin from "../ModalSignin/ModalSignin.jsx";
+import ModalSignup from "../ModalSignup/ModalSignup.jsx";
+import { useSelector , useDispatch} from "react-redux"
+import { openModal2 } from "../../REDUX/Actions/openModal2";
+import { openModal } from "../../REDUX/Actions/openModal";
 
 export default function Navbar() {
+  const dispatch = useDispatch()
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const ModalOpen = useSelector((state) => state.isOpen);
+  const ModalOpen2 = useSelector((state) => state.isOpen2);
+
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+    dispatch(openModal())
   };
-
+  
   const toggleModal2 = () => {
-    setIsModalOpen2(!isModalOpen2);
+    dispatch(openModal2())
   };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  
 
   return (
     <div className={css.container}>
@@ -43,24 +51,24 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className={css.menu}>
             <a href="#" onClick={toggleModal} className={css.L}>
-              Login
+              LogIn
             </a>
             <Modal
-              isOpen={isModalOpen}
+              isOpen={ModalOpen}
               onRequestClose={toggleModal}
               contentLabel="Login Modal"
             >
               <ModalLogin />
             </Modal>
             <a href="#" onClick={toggleModal2} className={css.S}>
-              Signin
+              SignUp
             </a>
             <Modal
-              isOpen={isModalOpen2}
+              isOpen={ModalOpen2}
               onRequestClose={toggleModal2}
               contentLabel="Signin Modal"
             >
-              <ModalSignin />
+              <ModalSignup/>
             </Modal>
           </div>
         )}
