@@ -1,6 +1,6 @@
 const initialState = {
   listado: [
-    { name: "comprar mantel", checked: false },
+    
     // Otros elementos de la lista...
   ],
 };

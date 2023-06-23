@@ -33,7 +33,6 @@ border: none;
     margin-right: 2%;
     flex-wrap: wrap;
     box-shadow: 5px 6px 16px rgba(0, 0, 0, 0.351);
-    z-index: 999;
 }
 .titulo{
     width: 100%;

@@ -45,3 +45,36 @@
 .task:hover{
     cursor: pointer;
 }
+
+.menu{
+    background-color: rgb(132, 23, 23);
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 200%;
+    height: 200%;
+    justify-content: center;
+    top: -34px;
+    left: -80px;
+}
+.menu a{
+    width: 100%;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; 
+}
+.menu a:hover {
+    background-color: #ff0000; /* Cambia el color de fondo al hacer hover */
+    color: #ffffff; /* Cambia el color del texto al hacer hover */
+    cursor: pointer;
+  }
+  
+  .modal{
+    z-index: 999;
+  }
+
+  .S{
+    background-color: aqua;
+  }
