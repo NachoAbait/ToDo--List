@@ -1,5 +1,5 @@
 import express from "express";
-import routesList from "./Routes/routesList.js";
+import authRoutes from "./Routes/authRoutes.js";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import bodyParser from "body-parser";
@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 });
 
 //RUTAS
-app.use(routesList);
+app.use(authRoutes);
 
 //DATABASE
 import "./db.mjs";
