@@ -1,6 +1,11 @@
 import { Router } from "express";
 const router = Router();
-import { login, signup, logout, profile } from "../Controllers/index.js";
+import {
+  login,
+  signup,
+  logout,
+  profile,
+} from "../Controllers/authController.js";
 import { authRequired } from "../middlewares/validateToken.js";
 
 router.post("/signup", signup);
