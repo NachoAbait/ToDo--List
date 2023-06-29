@@ -8,10 +8,17 @@ import {
   updateTask,
 } from "../Controllers/taskController.js";
 import { authRequired } from "../middlewares/validateToken.js";
+import { createTaskSchema } from "../Schemas/taskSchema.js";
+import { validateSchema } from "../middlewares/validator.js";
 
 router.get("/tasks", authRequired, getTasks);
 
-router.post("/task", authRequired, createTask);
+router.post(
+  "/task",
+  authRequired,
+  validateSchema(createTaskSchema),
+  createTask
+);
 
 router.get("/task/:id", authRequired, getTask);
 
