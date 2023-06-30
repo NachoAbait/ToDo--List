@@ -14,12 +14,10 @@
     width: 20%;
     border: 4px solid rgb(132, 23, 23);
     border-radius: 10px;
+    background-color: rgb(132, 23, 23);
     
 }
 
-.formulario{
-
-}
 
 .input{
     width: 80%;

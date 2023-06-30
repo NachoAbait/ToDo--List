@@ -1,10 +1,9 @@
 const initialState = {
   isOpen: false,
   isOpen2: false,
-  listado: [
-    // Otros elementos de la lista...
-  ],
+  listado: [],
   tasks: [],
+  task: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -55,6 +54,32 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         tasks: action.payload,
+      };
+
+    case "GET_TASK":
+      return {
+        ...state,
+        tasks: action.payload,
+      };
+
+    case "PUT_TASK":
+      return {
+        ...state,
+      };
+
+      case "DELETE_TASK":
+        const deletedTaskId = action.payload._id;
+        // Filtra las tareas y devuelve todas excepto la tarea eliminada
+        const updatedTasks = state.tasks.filter(task => task.id !== deletedTaskId);
+        return {
+          ...state,
+          tasks: updatedTasks,
+        };
+
+    case "POST_TASK":
+      return {
+        ...state,
+        tasks: [...state.tasks, action.payload],
       };
 
     default:

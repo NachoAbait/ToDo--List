@@ -41,17 +41,17 @@ export default function List() {
     <div className={css.container}>
       <div className={css.list}>
         <div className={css.titulo}>
-          <h1>To Do</h1>
+          <h1>Quick List</h1>
         </div>
         <div>
           <input
             type="text"
-            placeholder="Comprar tomates..."
+            placeholder="Buy tomatoes..."
             className={css.input}
             value={item}
             onChange={handleInputChange}
           />
-          <button onClick={handleClick}>Agregar</button>
+          <button onClick={handleClick}>Add</button>
         </div>
         <div className={css.listado}>
           {list.map((item, index) => (

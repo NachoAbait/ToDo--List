@@ -1,6 +1,6 @@
 .card{
     position: relative;
-    border: solid 1px;
+    border: solid 2px;
     border-radius: 10px;
     width: 22%;
     margin: 10px;
@@ -39,7 +39,4 @@
 .card h3{
     margin-top: 15px;
     margin-bottom: 0;
-}
-.card p{
-    
 }

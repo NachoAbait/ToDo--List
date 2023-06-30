@@ -6,6 +6,7 @@ import { useAuth } from "../../Context/userContext.js";
 import getTasks from "../../REDUX/Actions/getTasks.js";
 import css from "./Profile.module.css";
 import Card from "../Card/Card.jsx";
+import postTask from "../../REDUX/Actions/postTask.js";
 
 export default function Profile() {
   const { user } = useAuth();
@@ -28,14 +29,15 @@ export default function Profile() {
       title: title.value,
       description: description.value,
     };
-
+    console.log("esta es la data");
+    console.log(taskData);
     if (taskData.title === "" || taskData.description === "") {
       return alert("You must complete all fields");
     }
 
-    /*
-    signin(userData);
-    */
+    dispatch(postTask(taskData));
+    title.value = "";
+    description.value = "";
   };
 
   return (
@@ -66,7 +68,18 @@ export default function Profile() {
 
       <div className={css.containerTask}>
         <div className={css.tasks}>
-          {tasks.length? tasks.map((task) => <Card title={task.title} description={task.description}  date={task.date}></Card>) : <h1>You dont have tasks</h1> }
+          {tasks.length ? (
+            tasks.map((task) => (
+              <Card
+                title={task.title}
+                description={task.description}
+                date={task.date}
+                id={task._id}
+              ></Card>
+            ))
+          ) : (
+            <h1>Add some tasks</h1>
+          )}
         </div>
       </div>
 
