@@ -8,9 +8,14 @@ import ModalSignup from "../ModalSignup/ModalSignup.jsx";
 import { useSelector , useDispatch} from "react-redux"
 import { openModal2 } from "../../REDUX/Actions/openModal2";
 import { openModal } from "../../REDUX/Actions/openModal";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../Context/userContext.js";
+
 
 export default function Navbar() {
   const dispatch = useDispatch()
+  const { signup, user } = useAuth()
+  console.log(user)
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const ModalOpen = useSelector((state) => state.isOpen);
@@ -25,30 +30,31 @@ export default function Navbar() {
     dispatch(openModal2())
   };
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+ 
 
   
 
   return (
     <div className={css.container}>
-      <div className={css.logo}>
-        <FontAwesomeIcon
+      
+        <Link to="/">
+        <div className={css.logo}>
+          
+          <FontAwesomeIcon
           icon={faListCheck}
           style={{ color: "#e5ea47" }}
           className={css.task}
         />
         <h1>TaskTracker</h1>
       </div>
+        </Link>
+        
       <div className={css.usuario}>
-        <FontAwesomeIcon
-          icon={faUser}
-          style={{ color: "#ffffff" }}
-          className={css.user}
-          onClick={toggleMenu}
-        />
-        {isMenuOpen && (
+
+        
+
+        
+        { !user ? (
           <div className={css.menu}>
             <a href="#" onClick={toggleModal} className={css.L}>
               LogIn
@@ -71,7 +77,20 @@ export default function Navbar() {
               <ModalSignup/>
             </Modal>
           </div>
-        )}
+        ) :
+          <div> 
+            <Link to="/profile">
+              <div className={css.containerUser}>
+                <FontAwesomeIcon
+                  icon={faUser}
+                  style={{ color: "#ffffff" }}
+                  className={css.user}
+                /> 
+              </div>
+            </Link>
+          </div>
+        }
+        
       </div>
     </div>
   );

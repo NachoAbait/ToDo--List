@@ -3,9 +3,13 @@ import css from "./ModalLogin.module.css"
 import login from "../../REDUX/Actions/login.js"
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../REDUX/Actions/closeModal";
+import { useAuth } from "../../Context/userContext.js";
+
 
 export default function ModalLogin() {
   const dispatch = useDispatch();
+  const { signin, user } = useAuth()
+  console.log(user)
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -26,17 +30,7 @@ export default function ModalLogin() {
       return alert("You must complete all fields");
     }
 
-    dispatch(login(userData))
-      .then(() => {
-        // Usuario creado exitosamente
-        alert("Login Success! 🥳");
-      })
-      .catch((error) => {
-        // Error en la creación del usuario
-        
-          alert(error);
-        
-      });
+   signin(userData)
   };
 
 

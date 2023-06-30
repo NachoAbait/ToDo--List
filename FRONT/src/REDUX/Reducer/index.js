@@ -4,6 +4,7 @@ const initialState = {
   listado: [
     // Otros elementos de la lista...
   ],
+  tasks: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -15,8 +16,6 @@ function rootReducer(state = initialState, action) {
       return { ...state };
 
     case "ADD_LIST":
-      console.log("estoy en el reducer");
-      console.log(action.payload);
       return {
         ...state,
         listado: [...state.listado, { name: action.payload, checked: false }],
@@ -51,6 +50,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         isOpen: false,
       };
+
+    case "GET_TASKS":
+      return {
+        ...state,
+        tasks: action.payload,
+      };
+
     default:
       return {
         ...state,

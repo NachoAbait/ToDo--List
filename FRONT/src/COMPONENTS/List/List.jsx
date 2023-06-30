@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import css from "./list.module.css";
 import { addList } from "../../REDUX/Actions/addList.js";
 import { checkItem } from "../../REDUX/Actions/checkItem.js"
+import { useAuth } from "../../Context/userContext.js";
 
 export default function List() {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.listado);
   const [item, setItem] = useState("");
+
+  const { signup, user } = useAuth()
+  console.log(user)
 
   function handleInputChange(e) {
     setItem(e.target.value);

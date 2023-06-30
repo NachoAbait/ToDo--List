@@ -3,12 +3,14 @@ import css from "./ModalSignup.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import createUser from "../../REDUX/Actions/createUser.js";
 import { closeModal2 } from "../../REDUX/Actions/closeModal2";
-
+import { useAuth } from "../../Context/userContext.js";
 
 
 
 export default function ModalSignup() {
   const dispatch = useDispatch();
+  const { signup, user } = useAuth()
+  console.log(user)
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -29,21 +31,8 @@ export default function ModalSignup() {
       return alert("You must complete all fields");
     }
 
-    dispatch(createUser(userData))
-      .then(() => {
-        // Usuario creado exitosamente
-        alert("User created successfully. You can login now 🥳");
-      })
-      .catch((error) => {
-        // Error en la creación del usuario
-        if (error.response && error.response.status === 409) {
-          // Si el estado de respuesta es 409 (Conflict)
-          alert("User already exists");
-        } else {
-          // Otros errores
-          alert(error);
-        }
-      });
+    signup(userData)
+    
   };
 
  

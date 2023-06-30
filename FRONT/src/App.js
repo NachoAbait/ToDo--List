@@ -1,18 +1,21 @@
 import React from "react";
 import "./App.css";
-import Navbar from "./COMPONENTS/Navbar/Navbar.jsx";
-import List from "./COMPONENTS/List/List.jsx";
-import Footer from "./COMPONENTS/Footer/Footer.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./COMPONENTS/Home/Home.js";
+import Profile from "./COMPONENTS/Profile/Profile.js";
+import axios from "axios";
 
-const HOST = process.env;
 
 function App() {
   return (
-    <div className="App">
-      <Navbar></Navbar>
-      <List></List>
-      <Footer></Footer>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" Component={Home}></Route>
+          <Route exact path="/profile" Component={Profile}></Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -11,8 +11,8 @@ export function createAccessToken(payload) {
         expiresIn: "1d",
       },
       (err, token) => {
-        if (err) rejected(err); // si sale bien
-        resolve(token); // si sale mal
+        if (err) rejected(err); // si sale mal
+        resolve(token); // si sale bien
       }
     );
   });
