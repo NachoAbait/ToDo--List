@@ -3,7 +3,7 @@ import axios from "axios";
 export function deleteTask(id) {
     return async function (dispatch) {
       try {
-        console.log("estoy en la action");
+        console.log("estoy en la action deleteTask");
         console.log(id);
         await axios.delete(`http://localhost:3001/task/${id}`);
   

@@ -4,12 +4,15 @@ import css from "./list.module.css";
 import { addList } from "../../REDUX/Actions/addList.js";
 import { checkItem } from "../../REDUX/Actions/checkItem.js"
 import { useAuth } from "../../Context/userContext.js";
+import { v4 as uuidv4 } from "uuid";
+import { deleteList } from "../../REDUX/Actions/deleteList";
 
 export default function List() {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.listado);
   const [item, setItem] = useState("");
 
+  console.log(list)
   const { signup, user } = useAuth()
   console.log(user)
 
@@ -19,7 +22,12 @@ export default function List() {
 
   function handleClick(e) {
     e.preventDefault();
-    dispatch(addList(item));
+    const newItem = {
+      name: item,
+      checked: false,
+      id: uuidv4(),
+    }
+    dispatch(addList(newItem));
     setItem("");
   }
 
@@ -37,6 +45,10 @@ export default function List() {
     // Dispatch an action or update the state with the updated list
   }
 
+  function onClick(id,e) {
+    e.stopPropagation();
+    dispatch(deleteList(id))
+  }
   return (
     <div className={css.container}>
       <div className={css.list}>
@@ -64,7 +76,9 @@ export default function List() {
                 />
               </div>
               <div className={`${css.item} ${item.checked ? css.tachado : ""}`}>{item.name}</div>
-              <div className={css.x}>❌</div>
+              <div className={css.x} >
+                <span onClick={(e) => onClick(item.id,e )}>❌</span>
+              </div>
             </div>
           ))}
         </div>

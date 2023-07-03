@@ -17,9 +17,17 @@ function rootReducer(state = initialState, action) {
     case "ADD_LIST":
       return {
         ...state,
-        listado: [...state.listado, { name: action.payload, checked: false }],
+        listado: [...state.listado, action.payload],
       };
 
+    case "DELETE_LIST":
+      const newArr = state.listado.filter((task) => task.id !== action.payload);
+      console.log("en el reducer esta es la nueva lista:");
+      console.log(newArr);
+      return {
+        ...state,
+        listado: newArr,
+      };
     case "CHECK_ITEM":
       return {
         ...state,
@@ -67,14 +75,20 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
 
-      case "DELETE_TASK":
-        const deletedTaskId = action.payload._id;
-        // Filtra las tareas y devuelve todas excepto la tarea eliminada
-        const updatedTasks = state.tasks.filter(task => task.id !== deletedTaskId);
-        return {
-          ...state,
-          tasks: updatedTasks,
-        };
+    case "DELETE_TASK":
+      const deletedTaskId = action.payload;
+      // Filtra las tareas y devuelve todas excepto la tarea eliminada
+      const updatedTasks = state.tasks.filter(
+        (task) => task._id !== deletedTaskId
+      );
+      console.log("en el reducer este es el primer arreglo:");
+      console.log(state.tasks);
+      console.log("en el reducer este es el nuevo arreglo:");
+      console.log(updatedTasks);
+      return {
+        ...state,
+        tasks: updatedTasks,
+      };
 
     case "POST_TASK":
       return {
